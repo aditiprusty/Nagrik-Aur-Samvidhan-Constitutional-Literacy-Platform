@@ -1,0 +1,63 @@
+body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    background-color: #f4f4f4;
+}
+
+.container {
+    margin: 0 auto;
+    max-width: 600px;
+}
+
+h1 {
+    color: #333;
+}
+
+.board {
+    display: grid;
+    grid-template-columns: repeat(10, 1fr);
+    grid-template-rows: repeat(10, 1fr);
+    gap: 5px;
+    position: relative;
+    width: 300px; /* 50px per square, 10 squares wide */
+    height: 300px; /* 50px per square, 10 squares tall */
+}
+
+.square {
+    width: 50px;
+    height: 50px;
+    background-color: #ddd;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+    color: #333;
+}
+
+.controls {
+    margin-top: 20px;
+}
+
+.question-popup {
+    display: none;
+    background-color: white;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+}
+
+.question-popup.active {
+    display: block;
+}
+
+/* Style the player token */
+.token {
+    width: 40px;
+    height: 40px;
+    background-color: red;
+    border-radius: 50%;
+    position: absolute;
+    transition: all 0.5s ease; /* Smooth animation */
+    z-index: 1000; /* Ensure the token appears above the board */
+}
+
