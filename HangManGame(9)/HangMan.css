@@ -1,0 +1,60 @@
+body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    background-color: #f4f4f4;
+}
+
+.container {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+h1 {
+    color: #333;
+}
+
+#word {
+    font-size: 24px;
+    margin: 20px 0;
+    letter-spacing: 5px;
+}
+
+#alphabet {
+    margin: 20px 0;
+}
+
+.letter {
+    display: inline-block;
+    padding: 10px;
+    margin: 5px;
+    border: 1px solid #333;
+    cursor: pointer;
+    text-transform: uppercase;
+}
+
+.letter.used {
+    background-color: #ddd;
+    cursor: not-allowed;
+}
+
+#hangman {
+    margin: 20px 0;
+    font-size: 20px;
+    color: #333;
+}
+
+#message {
+    font-size: 18px;
+    margin: 20px 0;
+    color: red;
+}
+
+#resetButton {
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: #333;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+}
