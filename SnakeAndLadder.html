@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Snake and Ladder - Nagrik Aur Samvidhan</title>
+    <link rel="stylesheet" href="SnakeAndLadder.css">
+</head>
+<body>
+    <div class="container">
+        <div>
+            <h1>Snake and Ladder - Nagrik Aur Samvidhan</h1>
+            <div class="board">
+            
+            <!-- 100 squares for the snake and ladder board -->
+            <!-- <div class="square" id="square-100">100</div>
+            <div class="square" id="square-99">99</div>
+            <div class="square" id="square-98">98</div>
+            <div class="square" id="square-97">97</div>
+            <div class="square" id="square-95">96</div>
+            <div class="square" id="square-95">95</div>
+            <div class="square" id="square-94">94</div>
+            <div class="square" id="square-93">93</div>
+            <div class="square" id="square-92">92</div>
+            <div class="square" id="square-91">91</div>
+            <div class="square" id="square-90">90</div>
+            <div class="square" id="square-89">89</div>
+            <div class="square" id="square-88">88</div>
+            <div class="square" id="square-87">87</div>
+            <div class="square" id="square-86">86</div>
+            <div class="square" id="square-85">85</div>
+            <div class="square" id="square-84">84</div>
+            <div class="square" id="square-83">83</div>
+            <div class="square" id="square-82">82</div>
+            <div class="square" id="square-81">81</div>
+            <div class="square" id="square-80">80</div>
+            <div class="square" id="square-79">79</div>
+            <div class="square" id="square-78">78</div>
+            <div class="square" id="square-77">77</div>
+            <div class="square" id="square-76">76</div>
+            <div class="square" id="square-75">75</div>
+            <div class="square" id="square-74">74</div>
+            <div class="square" id="square-73">73</div>
+            <div class="square" id="square-72">72</div>
+            <div class="square" id="square-71">71</div>
+            <div class="square" id="square-70">70</div>
+            <div class="square" id="square-69">69</div>
+            <div class="square" id="square-68">68</div>
+            <div class="square" id="square-67">67</div>
+            <div class="square" id="square-66">66</div>
+            <div class="square" id="square-65">65</div>
+            <div class="square" id="square-64">64</div>
+            <div class="square" id="square-63">63</div>
+            <div class="square" id="square-62">62</div>
+            <div class="square" id="square-61">61</div>
+            <div class="square" id="square-60">60</div>
+            <div class="square" id="square-59">59</div>
+            <div class="square" id="square-58">58</div>
+            <div class="square" id="square-57">57</div>
+            <div class="square" id="square-56">56</div>
+            <div class="square" id="square-55">55</div>
+            <div class="square" id="square-54">54</div>
+            <div class="square" id="square-53">53</div>
+            <div class="square" id="square-52">52</div>
+            <div class="square" id="square-51">51</div> -->
+            <div class="square" id="square-50">50</div>
+            <div class="square" id="square-49">49</div>
+            <div class="square" id="square-48">48</div>
+            <div class="square" id="square-47">47</div>
+            <div class="square" id="square-46">46</div>
+            <div class="square" id="square-45">45</div>
+            <div class="square" id="square-44">44</div>
+            <div class="square" id="square-43">43</div>
+            <div class="square" id="square-42">42</div>
+            <div class="square" id="square-41">41</div>
+            <div class="square" id="square-40">40</div>
+            <div class="square" id="square-39">39</div>
+            <div class="square" id="square-38">38</div>
+            <div class="square" id="square-37">37</div>
+            <div class="square" id="square-36">36</div>
+            <div class="square" id="square-35">35</div>
+            <div class="square" id="square-34">34</div>
+            <div class="square" id="square-33">33</div>
+            <div class="square" id="square-32">32</div>
+            <div class="square" id="square-31">31</div>
+            <div class="square" id="square-30">30</div>
+            <div class="square" id="square-29">29</div>
+            <div class="square" id="square-28">28</div>
+            <div class="square" id="square-27">27</div>
+            <div class="square" id="square-26">26</div>
+            <div class="square" id="square-25">25</div>
+            <div class="square" id="square-24">24</div>
+            <div class="square" id="square-23">23</div>
+            <div class="square" id="square-22">22</div>
+            <div class="square" id="square-21">21</div>
+            <div class="square" id="square-20">20</div>
+            <div class="square" id="square-19">19</div>
+            <div class="square" id="square-18">18</div>
+            <div class="square" id="square-17">17</div>
+            <div class="square" id="square-16">16</div>
+            <div class="square" id="square-15">15</div>
+            <div class="square" id="square-14">14</div>
+            <div class="square" id="square-13">13</div>
+            <div class="square" id="square-12">12</div>
+            <div class="square" id="square-11">11</div>
+            <div class="square" id="square-10">10</div>
+            <div class="square" id="square-9">9</div>
+            <div class="square" id="square-8">8</div>
+            <div class="square" id="square-7">7</div>
+            <div class="square" id="square-6">6</div>
+            <div class="square" id="square-5">5</div>
+            <div class="square" id="square-4">4</div>
+            <div class="square" id="square-3">3</div>
+            <div class="square" id="square-2">2</div>
+            <div class="square" id="square-1">1</div>
+            <div id="playerToken" class="token"></div>
+            </div>
+        </div>
+        
+        <div>
+            <div class="controls">
+                <button id="rollDice">Roll Dice</button>
+                <p>Dice: <span id="diceResult">0</span></p>
+                <p>Player Position: <span id="playerPosition">1</span></p>
+            </div>
+            <div class="question-popup" id="questionPopup">
+                <h2>Constitutional Question</h2>
+                <p id="question"></p>
+                <button id="answerCorrect">Correct</button>
+                <button id="answerIncorrect">Incorrect</button>
+                <p id="answer"></p>
+                <button id="rollDiceAgain">Roll Dice</button>
+            </div>
+        </div>
+        
+    </div>
+    <script src="SnakeAndLadder.js"></script>
+</body>
+</html>
