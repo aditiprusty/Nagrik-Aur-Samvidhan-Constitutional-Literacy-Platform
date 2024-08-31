@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="content.css" />
+    <title>NAGRIK AUR SAMVIDHAN</title>
+  </head>
+  <body>
+    <div class="nav">
+      <div><a href="index.html">HOME</a></div>
+      <div><a href="abt.html">LEARN</a></div>
+      <div><a href="contact.html">PLAY</a></div>
+      <div><a href="project.html">LOGIN/SIGNUP</a></div>
+    </div>
+    <nav class="navigation-menu" id="navigationMenu">
+      <ul>
+        <li><a href="#part1">Right to Equality (Articles 14-18)</a></li>
+        <li><a href="#part2">Right to Freedom (Articles 19-22)</a></li>
+        <li>
+          <a href="#part3">Right against Exploitation (Articles 23-24)</a>
+        </li>
+        <li>
+          <a href="#part4">Right to Freedom of Religion (Articles 25-28)</a>
+        </li>
+        <li>
+          <a href="#part5">Cultural and Educational Rights (Articles 29-30) </a>
+        </li>
+        <li>
+          <a href="#part6">Right to Constitutional Remedies (Article 32)</a>
+        </li>
+        <li><a href="#part7">Saving of Laws (Articles 33-35)</a></li>
+      </ul>
+    </nav>
+    <div class="container">
+      <button class="view-all-parts" id="viewAllPartsBtn">
+        VIEW ALL PARTS
+      </button>
+      <div class="content">
+        <div class="part-number">
+          <img src="./image/3.png" alt="" />
+        </div>
+        <div class="text-content">
+          <h2>PART 3</h2>
+          <h1>Fundamental Rights</h1>
+          <h2>Definition And Legal Framework</h2>
+          <p>
+            Part III of the Constitution deal with Fundamental Rights. These
+            are: Right to equality, including equality before law, prohibition
+            of discrimination on grounds of religion, race, caste, sex or place
+            of birth, and equality of opportunity in matters of employment.
+          </p>
+        </div>
+      </div>
+    </div>
+    <div class="seccontainer">
+      
+        <div class="container">
+        <h1>Article 12: Definition of "State"</h1>
+        <div><p>Defines "the State" as including the Government and Parliament of India, the Government and the Legislature of each of the States, and all local or other authorities within the territory of India or under the control of the Government of India.</p></div>
+        <div class="state-item" id="central-gov">
+            <div class="text">Central Government</div>
+        </div>
+        <div class="state-item" id="state-gov">
+            <div class="text">State Government</div>
+        </div>
+        <div class="state-item" id="local-authorities">
+            <div class="text">Local Authorities</div>
+        </div>
+        <div class="state-item" id="other-authorities">
+            <div class="text">Other Authorities</div>
+        </div>
+        
+    </div>
+    </div> 
+     <div class="ar13">
+      <h1>Article 13:Laws Inconsistent with Fundamental Rights </h1>
+      <div>
+        <p>
+           Declares that any law that violates fundamental rights is void to the extent of the violation. It also introduces the concept of "judicial review," allowing the judiciary to declare laws unconstitutional.
+        </p>
+      </div>
+      <div ><img src="c:\Users\hp\Downloads\DALL·E 2024-08-31 01.04.50 - A cartoon-style image representing Article 13 of the Indian Constitution. The scene shows a judge in traditional Indian attire holding a large gavel (.webp" alt=""></div>
+      <div>
+        <img src="./OIG3.jpg" alt="">
+      </div>
+      <div>
+        <img src="./image/OIG3 (1).jpg" alt="">
+      </div>
+      <div>
+        <img src="./image/OIG3 (2).jpg" alt="">
+      </div>
+      <div><img src="./image/OIG2.jpg" alt=""></div>
+     </div>
+     
+    </div> 
+    </div>
+    
+    <script >
+      const viewAllPartsBtn = document.getElementById("viewAllPartsBtn");
+const navigationMenu = document.getElementById("navigationMenu");
+
+viewAllPartsBtn.addEventListener("click", () => {
+  navigationMenu.classList.toggle("active");
+});
+
+// Close menu when clicking outside
+document.addEventListener("click", (event) => {
+  if (
+    !navigationMenu.contains(event.target) &&
+    event.target !== viewAllPartsBtn
+  ) {
+    navigationMenu.classList.remove("active");
+  }
+});
+
+// Example function to load content (you would implement this to fetch and display the selected part)
+function loadPart(partId) {
+  // This is a placeholder function. In a real application, you would fetch the content for the selected part
+  // and update the page accordingly.
+  console.log(`Loading content for ${partId}`);
+  // Update page content here
+  navigationMenu.classList.remove("active");
+}
+
+// Add click event listeners to navigation links
+document.querySelectorAll(".navigation-menu a").forEach((link) => {
+  link.addEventListener("click", (e) => {
+    e.preventDefault();
+    const partId = e.target.getAttribute("href").substring(1);
+    loadPart(partId);
+  });
+});
+const prevButton = document.getElementById("prevButton");
+const nextButton = document.getElementById("nextButton");
+const elements = document.querySelectorAll(".navigable-element"); // Add this class to elements you want to navigate between
+let currentIndex = 0;
+
+prevButton.addEventListener("click", () => {
+  if (currentIndex > 0) {
+    currentIndex--;
+    elements[currentIndex].scrollIntoView({ behavior: "smooth" });
+  }
+});
+
+nextButton.addEventListener("click", () => {
+  if (currentIndex < elements.length - 1) {
+    currentIndex++;
+    elements[currentIndex].scrollIntoView({ behavior: "smooth" });
+  }
+});
+document.querySelectorAll(".state-item").forEach((item) => {
+  item.addEventListener("click", () => {
+    alert(`This represents the ${item.querySelector(".text").innerText}`);
+  });
+});
+    </script>
+  </body>
+</html>
