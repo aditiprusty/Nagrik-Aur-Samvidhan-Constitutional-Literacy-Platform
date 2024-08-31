@@ -7,14 +7,16 @@
     <link rel="stylesheet" href="HangMan.css">
 </head>
 <body>
-    <div class="container">
-        <h1>Constitutional Hangman Game</h1>
-        <p id="hint">Hint: </p>
-        <div id="word"></div>
-        <div id="alphabet"></div>
-        <div id="hangman"></div>
-        <p id="message"></p>
-        <button id="resetButton" onclick="resetGame()">Reset Game</button>
+   <div class="game-container">
+        <h1>Guess the Constitution Article</h1>
+        <div id="hint" class="hint"></div>
+        <div class="input-container">
+            <input type="number" id="guessInput" placeholder="Enter article number">
+            <button id="guessButton">Guess</button>
+        </div>
+        <div id="gameInfo" class="game-info"></div>
+        <div id="message" class="message"></div>
+        <button id="resetButton">Reset Game</button>
     </div>
     <script src="HangMan.js"></script>
 </body>

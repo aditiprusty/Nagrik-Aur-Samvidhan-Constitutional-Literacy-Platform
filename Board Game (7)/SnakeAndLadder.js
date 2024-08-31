@@ -10,9 +10,13 @@ document.addEventListener("DOMContentLoaded", () => {
     const ans = document.getElementById("answer");
     const rollDiceAgainBtn = document.getElementById("rollDiceAgain");
     const playerToken = document.getElementById("playerToken");
+    const scoreDisplay = document.getElementById("scoreDisplay");
 
     let currentPos = 1;
+    let attempts = 0;
+    let gameCompleted = false;
 
+    // ... (keep the existing questions array)
     const questions = [
     // Preamble
     { question: "What does the Preamble of the Constitution declare India as?", answer: "Correct" }, // Sovereign, Socialist, Secular, Democratic Republic
@@ -109,8 +113,8 @@ document.addEventListener("DOMContentLoaded", () => {
     { question: "Does the Constitution require citizens to protect the natural environment?", answer: "Correct" }
     ]
 
-
     function movePlayer(position) {
+        // ... (keep the existing movePlayer function)
         const square = document.getElementById(`square-${position}`);
         const rect = square.getBoundingClientRect();
         const boardRect = board.getBoundingClientRect();
@@ -124,7 +128,45 @@ document.addEventListener("DOMContentLoaded", () => {
         playerToken.style.top = `${offsetY}px`;
     }
 
-    rollDiceBtn.addEventListener("click", () => {
+    function calculateScore() {
+        // Higher score for fewer attempts
+        return Math.max(1000 - (attempts * 10), 0);
+    }
+
+    function handleAnswer(isCorrect, roll) {
+        attempts++;
+        gameCompleted = false;
+        if (isCorrect) {
+            currentPos += roll;
+            if (currentPos >= 50) {
+                currentPos = 50;
+                gameCompleted = true;
+            }
+            playerPosition.textContent = currentPos;
+            ans.textContent = "Correct Answer🥳";
+        } else {
+            currentPos -= roll;
+            if (currentPos < 1) currentPos = 1;
+            playerPosition.textContent = currentPos;
+            ans.textContent = "Wrong Answer😓";
+        }
+        correctBtn.disabled = true;
+        incorrectBtn.disabled = true;
+        movePlayer(currentPos);
+
+        if (gameCompleted) {
+            const finalScore = calculateScore();
+            sendScoreToServer(finalScore);
+            scoreDisplay.textContent = `Game Completed! Final Score: ${finalScore}`;
+            rollDiceBtn.disabled = true;
+            rollDiceAgainBtn.disabled = true;
+            alert("YOU WON 🥳🥳🥳")
+        } else {
+            scoreDisplay.textContent = `Current Score: ${calculateScore()}`;
+        }
+    }
+
+    function rollDiceAndAskQuestion() {
         ans.textContent = "";
         let roll = Math.floor(Math.random() * 6) + 1;
         diceResult.textContent = roll;
@@ -134,87 +176,29 @@ document.addEventListener("DOMContentLoaded", () => {
         const randomQuestion = questions[Math.floor(Math.random() * questions.length)];
         questionText.textContent = randomQuestion.question;
 
-        correctBtn.onclick = () => {
-            if (randomQuestion.answer === "Correct") {
-                currentPos += roll;
-                if (currentPos >= 100) {
-                    currentPos = 100;
-                }
-                playerPosition.textContent = currentPos;
-                ans.textContent = "Correct Answer🥳";
-            } else {
-                currentPos -= roll;
-                if (currentPos < 1) currentPos = 1;
-                playerPosition.textContent = currentPos;
-                ans.textContent = "Wrong Answer😓";
-            }
-            correctBtn.disabled = true;
-            incorrectBtn.disabled = true;
-            movePlayer(currentPos);
-        };
-
-        incorrectBtn.onclick = () => {
-            if (randomQuestion.answer === "Incorrect") {
-                currentPos += roll;
-                if (currentPos >= 100) {
-                    currentPos = 100;
-                }
-                playerPosition.textContent = currentPos;
-                ans.textContent = "Correct Answer🥳";
-            } else {
-                currentPos -= roll;
-                if (currentPos < 1) currentPos = 1;
-                playerPosition.textContent = currentPos;
-                ans.textContent = "Wrong Answer😓";
-            }
-            correctBtn.disabled = true;
-            incorrectBtn.disabled = true;
-            movePlayer(currentPos);
-        };
+        correctBtn.onclick = () => handleAnswer(randomQuestion.answer === "Correct", roll);
+        incorrectBtn.onclick = () => handleAnswer(randomQuestion.answer === "Incorrect", roll);
+    }
+    function sendScoreToServer(score) {
+    fetch('/update-score', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ score: score }),
+    })
+    .then(response => response.json())
+    .then(data => {
+        console.log('Score saved successfully:', data);
+    })
+    .catch((error) => {
+        console.error('Error saving score:', error);
     });
+}
 
-    rollDiceAgainBtn.addEventListener("click", () => {
-        ans.textContent = "";
-        let roll = Math.floor(Math.random() * 6) + 1;
-        diceResult.textContent = roll;
-        correctBtn.disabled = false;
-        incorrectBtn.disabled = false;
-        questionPopup.classList.add("active");
-        const randomQuestion = questions[Math.floor(Math.random() * questions.length)];
-        questionText.textContent = randomQuestion.question;
+    rollDiceBtn.addEventListener("click", rollDiceAndAskQuestion);
+    rollDiceAgainBtn.addEventListener("click", rollDiceAndAskQuestion);
 
-        correctBtn.onclick = () => {
-            if (randomQuestion.answer === "Correct") {
-                currentPos += roll;
-                if (currentPos > 100) currentPos = 100;
-                playerPosition.textContent = currentPos;
-                ans.textContent = "Correct Answer🥳";
-            } else {
-                currentPos -= roll;
-                if (currentPos < 1) currentPos = 1;
-                playerPosition.textContent = currentPos;
-                ans.textContent = "Wrong Answer😓";
-            }
-            correctBtn.disabled = true;
-            incorrectBtn.disabled = true;
-            movePlayer(currentPos);
-        };
-
-        incorrectBtn.onclick = () => {
-            if (randomQuestion.answer === "Incorrect") {
-                currentPos += roll;
-                if (currentPos > 100) currentPos = 100;
-                playerPosition.textContent = currentPos;
-                ans.textContent = "Correct Answer🥳";
-            } else {
-                currentPos -= roll;
-                if (currentPos < 1) currentPos = 1;
-                playerPosition.textContent = currentPos;
-                ans.textContent = "Wrong Answer😓";
-            }
-            correctBtn.disabled = true;
-            incorrectBtn.disabled = true;
-            movePlayer(currentPos);
-        };
-    });
+    // Initialize score display
+    scoreDisplay.textContent = "Current Score: 1000";
 });

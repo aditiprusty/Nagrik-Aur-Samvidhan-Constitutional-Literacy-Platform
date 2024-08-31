@@ -42,86 +42,90 @@ const articles = [
     { number: "51A", hint: "Fundamental Duties of citizens" }
 ];
 
-let selectedArticle = "";
-let hint = "";
-let guessedNumber = [];
-let wrongGuesses = 0;
-const maxWrongGuesses = 6;
 
-const wordElement = document.getElementById("word");
-const alphabetElement = document.getElementById("alphabet");
-const hangmanElement = document.getElementById("hangman");
-const messageElement = document.getElementById("message");
-const hintElement = document.getElementById("hint");
+        let selectedArticle;
+        let attempts = 0;
+        let score = 0;
+        let gameOver = false;
+        const maxAttempts = 10;
 
-function resetGame() {
-    // Reset game variables
-    wrongGuesses = 0;
-    guessedNumber = [];
+        const hintElement = document.getElementById('hint');
+        const guessInput = document.getElementById('guessInput');
+        const guessButton = document.getElementById('guessButton');
+        const gameInfoElement = document.getElementById('gameInfo');
+        const messageElement = document.getElementById('message');
+        const resetButton = document.getElementById('resetButton');
 
-    // Randomly select an article
-    const randomIndex = Math.floor(Math.random() * articles.length);
-    selectedArticle = articles[randomIndex].number;
-    hint = articles[randomIndex].hint;
-
-    // Display the hint
-    hintElement.innerHTML = "Hint: " + hint;
-
-    // Reset display elements
-    wordElement.innerHTML = "_ ".repeat(selectedArticle.length);
-    hangmanElement.innerHTML = `Wrong guesses: ${wrongGuesses}/${maxWrongGuesses}`;
-    messageElement.innerHTML = "";
-
-    // Create number buttons (0-9)
-    alphabetElement.innerHTML = "";
-    for (let i = 0; i <= 9; i++) {
-        const numberButton = document.createElement("span");
-        numberButton.classList.add("letter");
-        numberButton.innerHTML = i;
-        numberButton.addEventListener("click", () => guessNumber(i.toString(), numberButton));
-        alphabetElement.appendChild(numberButton);
-    }
-}
-
-function guessNumber(number, numberButton) {
-    numberButton.classList.add("used");
-    numberButton.removeEventListener("click", () => guessNumber(number, numberButton));
-
-    if (selectedArticle.includes(number)) {
-        // Correct guess
-        for (let i = 0; i < selectedArticle.length; i++) {
-            if (selectedArticle[i] === number) {
-                guessedNumber[i] = number;
-            }
+        function resetGame() {
+            selectedArticle = articles[Math.floor(Math.random() * articles.length)];
+            attempts = 0;
+            score = 0;
+            gameOver = false;
+            hintElement.textContent = selectedArticle.hint;
+            guessInput.value = '';
+            guessInput.disabled = false;
+            guessButton.disabled = false;
+            updateGameInfo();
+            messageElement.textContent = '';
         }
-        wordElement.innerHTML = guessedNumber.join(" ");
-        checkWin();
-    } else {
-        // Incorrect guess
-        wrongGuesses++;
-        hangmanElement.innerHTML = `Wrong guesses: ${wrongGuesses}/${maxWrongGuesses}`;
-        checkLoss();
-    }
+
+        function updateGameInfo() {
+            gameInfoElement.textContent = `Attempts: ${attempts}/${maxAttempts} | Score: ${score}`;
+        }
+
+        function handleGuess() {
+            const guess = parseInt(guessInput.value);
+            const correctNum = parseInt(selectedArticle.number);
+
+            if (isNaN(guess)) {
+                messageElement.textContent = 'Please enter a valid number.';
+                return;
+            }
+
+            attempts++;
+
+            if (guess === correctNum) {
+                score = Math.max(100 - (attempts * 10), 10);
+                messageElement.textContent = `Congratulations! You've guessed correctly. Article ${selectedArticle.number}: ${selectedArticle.hint}`;
+                gameOver = true;
+                guessInput.disabled = true;
+                guessButton.disabled = true;
+                sendScoreToServer(score);
+            } else {
+                const article = articles.find(a => parseInt(a.number) === guess);
+                let hint = guess < correctNum ? 'higher' : 'lower';
+                messageElement.textContent = `Try a ${hint} number. ${article ? `Article ${article.number}: ${article.hint}` : 'No article found for this number.'}`;
+
+                if (attempts >= maxAttempts) {
+                    messageElement.textContent += ` Game over! The correct article was ${selectedArticle.number}: ${selectedArticle.hint}`;
+                    gameOver = true;
+                    guessInput.disabled = true;
+                    guessButton.disabled = true;
+                    sendScoreToServer(0);
+                }
+            }
+
+            updateGameInfo();
+        }
+        function sendScoreToServer(score) {
+    fetch('/update-score', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ score: score }),
+    })
+    .then(response => response.json())
+    .then(data => {
+        console.log('Score saved successfully:', data);
+    })
+    .catch((error) => {
+        console.error('Error saving score:', error);
+    });
 }
 
-function checkWin() {
-    if (guessedNumber.join("") === selectedArticle) {
-        messageElement.innerHTML = "Congratulations! You've correctly guessed the article number!";
-        disableAlphabet();
-    }
-}
+        guessButton.addEventListener('click', handleGuess);
+        resetButton.addEventListener('click', resetGame);
 
-function checkLoss() {
-    if (wrongGuesses >= maxWrongGuesses) {
-        messageElement.innerHTML = `Game Over! The correct article number was "${selectedArticle}".`;
-        disableAlphabet();
-    }
-}
-
-function disableAlphabet() {
-    const letters = document.querySelectorAll(".letter");
-    letters.forEach(letter => letter.removeEventListener("click", guessNumber));
-}
-
-// Initialize game
-resetGame();
+        // Initialize the game
+        resetGame();
