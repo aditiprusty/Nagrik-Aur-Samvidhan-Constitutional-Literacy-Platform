@@ -34,15 +34,32 @@ app.get("/", (req, res) => {
   res.render("landingpage.ejs");
 });
 
-app.get("/home", (req, res) => {
+app.get("/home", async (req, res) => {
   if (req.session.user) {
-    res.render("home", { user: req.session.user });
+    try {
+      // Fetch top 3 players
+      const topPlayers = await User.find({})
+        .sort({ score: -1 })
+        .limit(3)
+        .select('fullName score');
+
+      // Fetch current user's updated information
+      const currentUser = await User.findById(req.session.user.uid);
+
+      res.render("home", { 
+        user: currentUser, 
+        topPlayers: topPlayers,
+      });
+    } catch (error) {
+      console.error("Error fetching leaderboard:", error);
+      res.status(500).send("Error fetching leaderboard");
+    }
   } else {
     res.redirect("/auth/signin");
   }
 });
 
-// Game Routes (Inline)
+// Game Routes
 app.get("/snake-ladder", (req, res) => {
   if (req.session.user) {
     res.render("SnakeAndLadder.ejs", { user: req.session.user });
@@ -50,6 +67,7 @@ app.get("/snake-ladder", (req, res) => {
     res.redirect("/auth/signin");
   }
 });
+
 app.get("/hangman", (req, res) => {
   if (req.session.user) {
     res.render("HangMan.ejs", { user: req.session.user });
@@ -57,6 +75,7 @@ app.get("/hangman", (req, res) => {
     res.redirect("/auth/signin");
   }
 });
+
 app.get("/quiz", (req, res) => {
   if (req.session.user) {
     res.render("Quiz.ejs", { user: req.session.user });
@@ -64,6 +83,7 @@ app.get("/quiz", (req, res) => {
     res.redirect("/auth/signin");
   }
 });
+
 app.get("/spinwheel", (req, res) => {
   if (req.session.user) {
     res.render("SpinWheel.ejs", { user: req.session.user });
@@ -71,6 +91,7 @@ app.get("/spinwheel", (req, res) => {
     res.redirect("/auth/signin");
   }
 });
+
 app.get("/scenario", (req, res) => {
   if (req.session.user) {
     res.render("Scenario.ejs", { user: req.session.user });
