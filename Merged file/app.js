@@ -29,7 +29,7 @@ app.use('/auth', authRoutes);
 
 // Home Route
 app.get('/', (req, res) => {
-    res.redirect('/auth/signin');
+    res.render('landingpage.ejs');
 });
 
 app.get('/home', (req, res) => {
