@@ -107,7 +107,9 @@ app.get("/auth/signin", (req, res) => {
 app.get("/auth/signup", (req, res) => {
   res.render("signup");
 });
-
+app.get("/artcle13",(req,res)=>{
+  res.render("/views/contents/article13.ejs");
+});
 app.post("/update-score", async (req, res) => {
   if (!req.session.user) {
     return res.status(401).json({ message: "Unauthorized" });
