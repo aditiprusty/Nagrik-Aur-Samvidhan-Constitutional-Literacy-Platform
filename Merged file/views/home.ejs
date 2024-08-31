@@ -4,9 +4,77 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Home</title>
-    <link rel="stylesheet" href="/styles.css" />
+    <style>
+      body {
+        margin: 0;
+        overflow: hidden;
+        font-family: Arial, sans-serif;
+        color: white;
+      }
+      .container {
+        position: relative;
+        z-index: 1;
+        padding: 20px;
+        max-width: 1200px;
+        margin: 0 auto;
+      }
+      h1 {
+        text-align: center;
+        font-size: 2.5em;
+        margin-bottom: 20px;
+      }
+      .score-board {
+        background-color: rgba(0, 0, 0, 0.7);
+        padding: 15px;
+        border-radius: 10px;
+        text-align: center;
+        font-size: 1.2em;
+        margin-bottom: 30px;
+      }
+      .games {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 20px;
+      }
+      .game-icon {
+        text-align: center;
+        width: 180px;
+      }
+      .game-icon img {
+        width: 100%;
+        height: 180px;
+        object-fit: contain;
+        border-radius: 10px;
+        transition: transform 0.3s ease;
+      }
+      .game-icon:hover img {
+        transform: scale(1.05);
+      }
+      .game-icon p {
+        margin-top: 10px;
+        font-weight: bold;
+      }
+      .signout-button {
+        display: block;
+        width: 200px;
+        margin: 30px auto 0;
+        padding: 10px;
+        background-color: #ff4444;
+        color: white;
+        text-align: center;
+        text-decoration: none;
+        border-radius: 5px;
+        font-weight: bold;
+      }
+      #toast-container {
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+      }
+    </style>
   </head>
-  <body style="margin: 0; overflow: hidden">
+  <body>
     <!-- Background Video -->
     <video
       autoplay
@@ -18,45 +86,45 @@
         left: 0;
         width: 100%;
         height: 100%;
-        z-index: -1; /* Ensure the video is behind the content */
+        z-index: -1;
         object-fit: cover;
       "
     >
       <source
-        src="https://firebasestorage.googleapis.com/v0/b/chatapp-dae72.appspot.com/o/techcoders%2Fvideo.mp4481c94e1-c383-4855-8d0b-594c34a6f589?alt=media&token=4d6771a1-0dc2-40ac-8d21-f91a9155263b"
+        src="https://firebasestorage.googleapis.com/v0/b/chatapp-dae72.appspot.com/o/techcoders%2FUntitled%20design%20(5).mp41b3e0dbc-8309-4d69-8880-6e33cd20c936?alt=media&token=41e24f41-8805-4630-8287-e4d3c601f860"
         type="video/mp4"
       />
       Your browser does not support the video tag.
     </video>
-
     <div class="container">
       <% if (user) { %>
-      <h1>Welcome, <%= user.fullName %>!</h1>
-      <p>Your Score: <strong><%= user.score %></strong></p>
-
+      <h1 style="color: rgb(0, 0, 0);"><%= user.fullName %></h1>
+      <div class="score-board">
+        <p>Your Score: <strong><%= user.score %></strong></p>
+      </div>
       <div class="games">
         <div class="game-icon">
           <a href="/snake-ladder">
-            <img src="/images/board-game-icon.png" alt="snake ladder" />
+            <img src="https://firebasestorage.googleapis.com/v0/b/chatapp-dae72.appspot.com/o/techcoders%2Fkisspng-snakes-and-ladders-ludo-neo-classic-ludo-king-d-snakes-and-ladders-5b540e2b433a19.0289314515322353072754.png895b845c-0549-46da-9ebd-fd39c6bf9edb?alt=media&token=c25355c8-28db-4aa4-a772-be596aa204e4" alt="snake ladder" />
             <p>Snake Ladder</p>
           </a>
         </div>
         <div class="game-icon">
           <a href="/hangman">
-            <img src="/images/hangman-game-icon.png" alt="Hangman Game" />
+            <img src="https://firebasestorage.googleapis.com/v0/b/chatapp-dae72.appspot.com/o/techcoders%2Fpngwing.com%20(2).png4c305bb2-be16-4b1e-9d05-23f8cda332d4?alt=media&token=2bf12c98-b914-4ef8-9472-0291f7ae5f99" alt="Hangman Game" />
             <p>Hangman Game</p>
           </a>
         </div>
         <div class="game-icon">
           <a href="/quiz">
-            <img src="/images/quiz-icon.png" alt="Quiz" />
+            <img src="https://firebasestorage.googleapis.com/v0/b/chatapp-dae72.appspot.com/o/techcoders%2Fpngwing.com%20(3).png23425e35-c897-4502-938a-0db9adc3bd01?alt=media&token=3b0233fd-4923-4e28-9093-9d267a329738" alt="Quiz" />
             <p>Quiz</p>
           </a>
         </div>
         <div class="game-icon">
           <a href="/scenario">
             <img
-              src="/images/scenario-based-quiz-icon.png"
+              src="https://firebasestorage.googleapis.com/v0/b/chatapp-dae72.appspot.com/o/techcoders%2Fpngwing.com%20(4).png23d939d4-90ae-4164-b545-42aceec0e389?alt=media&token=9ed559f3-820e-40c2-b7cd-b6b264babb45"
               alt="Scenario Based Quiz"
             />
             <p>Scenario Based Quiz</p>
@@ -64,12 +132,11 @@
         </div>
         <div class="game-icon">
           <a href="/spinwheel">
-            <img src="/images/spin-wheel-icon.png" alt="Spin Wheel" />
+            <img src="https://firebasestorage.googleapis.com/v0/b/chatapp-dae72.appspot.com/o/techcoders%2Fpngegg%20(5).pngf9a34058-2587-452f-8a55-e7878eaedfe0?alt=media&token=29720eb9-dcfe-4806-a2c0-be4abaf3a9cd" alt="Spin Wheel" />
             <p>Spin Wheel</p>
           </a>
         </div>
       </div>
-
       <a href="/auth/signout" class="signout-button">Sign Out</a>
       <% } else { %>
       <p>User data not available.</p>
