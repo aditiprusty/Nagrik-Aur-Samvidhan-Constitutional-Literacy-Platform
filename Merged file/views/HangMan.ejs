@@ -7,80 +7,80 @@
     <link rel="stylesheet" href="HangMan.css">
 </head>
 <style>
-    body {
-    font-family: Arial, sans-serif;
-    text-align: center;
-    background-color: #f4f4f4;
-}
-
-.container {
-    max-width: 600px;
-    margin: 0 auto;
-    padding: 20px;
-}
-
-h1 {
-    color: #333;
-}
-
-#word {
-    font-size: 24px;
-    margin: 20px 0;
-    letter-spacing: 5px;
-}
-
-#alphabet {
-    margin: 20px 0;
-}
-
-.letter {
-    display: inline-block;
-    padding: 10px;
-    margin: 5px;
-    border: 1px solid #333;
-    cursor: pointer;
-    text-transform: uppercase;
-}
-
-.letter.used {
-    background-color: #ddd;
-    cursor: not-allowed;
-}
-
-#hangman {
-    margin: 20px 0;
-    font-size: 20px;
-    color: #333;
-}
-
-#message {
-    font-size: 18px;
-    margin: 20px 0;
-    color: red;
-}
-
-#resetButton {
-    padding: 10px 20px;
-    font-size: 16px;
-    background-color: #333;
-    color: #fff;
-    border: none;
-    cursor: pointer;
-}
-
+ body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f0f0f0;
+        }
+        .game-container {
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            width: 100%;
+            max-width: 400px;
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+        .hint {
+            background-color: #e9ecef;
+            border-radius: 4px;
+            padding: 10px;
+            margin-bottom: 15px;
+        }
+        .input-container {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+        input {
+            flex-grow: 1;
+            padding: 8px;
+            border: 1px solid #ced4da;
+            border-radius: 4px;
+        }
+        button {
+            padding: 8px 16px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        button:disabled {
+            background-color: #6c757d;
+            cursor: not-allowed;
+        }
+        .game-info {
+            margin-bottom: 15px;
+            font-size: 0.9em;
+        }
+        .message {
+            margin-bottom: 15px;
+            font-style: italic;
+        }
 </style>
 <body>
-    <div class="container">
-        <h1>Constitutional Hangman Game</h1>
-        <p id="hint">Hint: </p>
-        <div id="word"></div>
-        <div id="alphabet"></div>
-        <div id="hangman"></div>
-        <p id="message"></p>
-        <button id="resetButton" onclick="resetGame()">Reset Game</button>
+    <div class="game-container">
+        <h1>Guess the Constitution Article</h1>
+        <div id="hint" class="hint"></div>
+        <div class="input-container">
+            <input type="number" id="guessInput" placeholder="Enter article number">
+            <button id="guessButton">Guess</button>
+        </div>
+        <div id="gameInfo" class="game-info"></div>
+        <div id="message" class="message"></div>
+        <button id="resetButton">Reset Game</button>
     </div>
-    <script src="HangMan.js"></script>
-</body>
 <script>
     const articles = [
     { number: "12", hint: "Definition of 'State' under the Constitution" },
@@ -126,89 +126,94 @@ h1 {
     { number: "51A", hint: "Fundamental Duties of citizens" }
 ];
 
-let selectedArticle = "";
-let hint = "";
-let guessedNumber = [];
-let wrongGuesses = 0;
-const maxWrongGuesses = 6;
 
-const wordElement = document.getElementById("word");
-const alphabetElement = document.getElementById("alphabet");
-const hangmanElement = document.getElementById("hangman");
-const messageElement = document.getElementById("message");
-const hintElement = document.getElementById("hint");
+        let selectedArticle;
+        let attempts = 0;
+        let score = 0;
+        let gameOver = false;
+        const maxAttempts = 10;
 
-function resetGame() {
-    // Reset game variables
-    wrongGuesses = 0;
-    guessedNumber = [];
+        const hintElement = document.getElementById('hint');
+        const guessInput = document.getElementById('guessInput');
+        const guessButton = document.getElementById('guessButton');
+        const gameInfoElement = document.getElementById('gameInfo');
+        const messageElement = document.getElementById('message');
+        const resetButton = document.getElementById('resetButton');
 
-    // Randomly select an article
-    const randomIndex = Math.floor(Math.random() * articles.length);
-    selectedArticle = articles[randomIndex].number;
-    hint = articles[randomIndex].hint;
-
-    // Display the hint
-    hintElement.innerHTML = "Hint: " + hint;
-
-    // Reset display elements
-    wordElement.innerHTML = "_ ".repeat(selectedArticle.length);
-    hangmanElement.innerHTML = `Wrong guesses: ${wrongGuesses}/${maxWrongGuesses}`;
-    messageElement.innerHTML = "";
-
-    // Create number buttons (0-9)
-    alphabetElement.innerHTML = "";
-    for (let i = 0; i <= 9; i++) {
-        const numberButton = document.createElement("span");
-        numberButton.classList.add("letter");
-        numberButton.innerHTML = i;
-        numberButton.addEventListener("click", () => guessNumber(i.toString(), numberButton));
-        alphabetElement.appendChild(numberButton);
-    }
-}
-
-function guessNumber(number, numberButton) {
-    numberButton.classList.add("used");
-    numberButton.removeEventListener("click", () => guessNumber(number, numberButton));
-
-    if (selectedArticle.includes(number)) {
-        // Correct guess
-        for (let i = 0; i < selectedArticle.length; i++) {
-            if (selectedArticle[i] === number) {
-                guessedNumber[i] = number;
-            }
+        function resetGame() {
+            selectedArticle = articles[Math.floor(Math.random() * articles.length)];
+            attempts = 0;
+            score = 0;
+            gameOver = false;
+            hintElement.textContent = selectedArticle.hint;
+            guessInput.value = '';
+            guessInput.disabled = false;
+            guessButton.disabled = false;
+            updateGameInfo();
+            messageElement.textContent = '';
         }
-        wordElement.innerHTML = guessedNumber.join(" ");
-        checkWin();
-    } else {
-        // Incorrect guess
-        wrongGuesses++;
-        hangmanElement.innerHTML = `Wrong guesses: ${wrongGuesses}/${maxWrongGuesses}`;
-        checkLoss();
-    }
+
+        function updateGameInfo() {
+            gameInfoElement.textContent = `Attempts: ${attempts}/${maxAttempts} | Score: ${score}`;
+        }
+
+        function handleGuess() {
+            const guess = parseInt(guessInput.value);
+            const correctNum = parseInt(selectedArticle.number);
+
+            if (isNaN(guess)) {
+                messageElement.textContent = 'Please enter a valid number.';
+                return;
+            }
+
+            attempts++;
+
+            if (guess === correctNum) {
+                score = Math.max(100 - (attempts * 10), 10);
+                messageElement.textContent = `Congratulations! You've guessed correctly. Article ${selectedArticle.number}: ${selectedArticle.hint}`;
+                gameOver = true;
+                guessInput.disabled = true;
+                guessButton.disabled = true;
+                sendScoreToServer(score);
+            } else {
+                const article = articles.find(a => parseInt(a.number) === guess);
+                let hint = guess < correctNum ? 'higher' : 'lower';
+                messageElement.textContent = `Try a ${hint} number. ${article ? `Article ${article.number}: ${article.hint}` : 'No article found for this number.'}`;
+
+                if (attempts >= maxAttempts) {
+                    messageElement.textContent += ` Game over! The correct article was ${selectedArticle.number}: ${selectedArticle.hint}`;
+                    gameOver = true;
+                    guessInput.disabled = true;
+                    guessButton.disabled = true;
+                    sendScoreToServer(0);
+                }
+            }
+
+            updateGameInfo();
+        }
+        function sendScoreToServer(score) {
+    fetch('/update-score', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ score: score }),
+    })
+    .then(response => response.json())
+    .then(data => {
+        console.log('Score saved successfully:', data);
+    })
+    .catch((error) => {
+        console.error('Error saving score:', error);
+    });
 }
 
-function checkWin() {
-    if (guessedNumber.join("") === selectedArticle) {
-        messageElement.innerHTML = "Congratulations! You've correctly guessed the article number!";
-        disableAlphabet();
-    }
-}
+        guessButton.addEventListener('click', handleGuess);
+        resetButton.addEventListener('click', resetGame);
 
-function checkLoss() {
-    if (wrongGuesses >= maxWrongGuesses) {
-        messageElement.innerHTML = `Game Over! The correct article number was "${selectedArticle}".`;
-        disableAlphabet();
-    }
-}
-
-function disableAlphabet() {
-    const letters = document.querySelectorAll(".letter");
-    letters.forEach(letter => letter.removeEventListener("click", guessNumber));
-}
-
-// Initialize game
-resetGame();
+        // Initialize the game
+        resetGame();
 
 </script>
+</body>
 </html>

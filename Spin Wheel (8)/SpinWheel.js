@@ -1,4 +1,4 @@
-const wheel = document.getElementById('wheel');
+ const wheel = document.getElementById('wheel');
         const spinButton = document.getElementById('spinButton');
         const questionDiv = document.getElementById('question');
         const optionsDiv = document.getElementById('options');
@@ -48,6 +48,7 @@ const wheel = document.getElementById('wheel');
         }
 
         function checkAnswer(selectedIndex, correctIndex) {
+            const score = 1000;
             const options = optionsDiv.getElementsByTagName('button');
             for (let option of options) {
                 option.disabled = true;
@@ -56,9 +57,11 @@ const wheel = document.getElementById('wheel');
             if (selectedIndex === correctIndex) {
                 feedbackDiv.textContent = "Congratulations! That's correct!";
                 feedbackDiv.className = 'correct';
+                sendScoreToServer(score)
             } else {
                 feedbackDiv.textContent = `Sorry, that's incorrect. The correct answer is: ${questions[0].o[correctIndex]}`;
                 feedbackDiv.className = 'incorrect';
+                sendScoreToServer(0)
             }
         }
 
@@ -73,6 +76,7 @@ const wheel = document.getElementById('wheel');
                 localStorage.setItem('lastSpinTime', Date.now());
             }, 5000);
         }
+        
 
         function checkSpinEligibility() {
             const lastSpinTime = localStorage.getItem('lastSpinTime');
@@ -89,5 +93,21 @@ const wheel = document.getElementById('wheel');
             }
         }
 
+        function sendScoreToServer(score) {
+        fetch('/update-score', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ score: score }),
+        })
+        .then(response => response.json())
+        .then(data => {
+            console.log('Score saved successfully:', data);
+        })
+        .catch((error) => {
+        console.error('Error saving score:', error);
+        });
+    }
         spinButton.addEventListener('click', spin);
         checkSpinEligibility();
