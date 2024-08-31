@@ -23,7 +23,7 @@ body {
 }
 
 h1 {
-  color: #f6f1f1;
+  color: brown ;
   font-size: 2.5em;
   margin-bottom: 20px;
 }
@@ -44,6 +44,7 @@ h1 {
   width: 100%;
   opacity: 0;
   transition: opacity 0.5s ease;
+
 }
 
 .question.active {
@@ -102,13 +103,14 @@ p {
   margin: 10px 0;
   cursor: pointer;
   text-align: left;
-  color: #ffffff; 
+  color: floralwhite; 
+  font-weight: bold;
 }
 
 #result {
   margin-top: 30px;
   font-size: 1.8em;
-  color: #a5b554;
+  color: brown;
   display: none;
   animation: fadeIn 1s ease;
 }
