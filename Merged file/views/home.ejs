@@ -1,14 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Home</title>
-    <link rel="stylesheet" href="/styles.css">
-</head>
-<body style="margin: 0; overflow: hidden;">
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body style="margin: 0; overflow: hidden">
     <!-- Background Video -->
-    <video autoplay muted loop style="
+    <video
+      autoplay
+      muted
+      loop
+      style="
         position: fixed;
         top: 0;
         left: 0;
@@ -16,55 +20,62 @@
         height: 100%;
         z-index: -1; /* Ensure the video is behind the content */
         object-fit: cover;
-    ">
-        <source src="/video.mp4" type="video/mp4">
-        Your browser does not support the video tag.
+      "
+    >
+      <source
+        src="https://firebasestorage.googleapis.com/v0/b/chatapp-dae72.appspot.com/o/techcoders%2Fvideo.mp4481c94e1-c383-4855-8d0b-594c34a6f589?alt=media&token=4d6771a1-0dc2-40ac-8d21-f91a9155263b"
+        type="video/mp4"
+      />
+      Your browser does not support the video tag.
     </video>
 
     <div class="container">
-        <% if (user) { %>
-            <h1>Welcome, <%= user.fullName %>!</h1>
-            <p>Your Score: <strong><%= user.score %></strong></p>
+      <% if (user) { %>
+      <h1>Welcome, <%= user.fullName %>!</h1>
+      <p>Your Score: <strong><%= user.score %></strong></p>
 
-            <div class="games">
-                <div class="game-icon">
-                    <a href="/snake-ladder">
-                        <img src="/images/board-game-icon.png" alt="snake ladder">
-                        <p>Snake Ladder</p>
-                    </a>
-                </div>
-                <div class="game-icon">
-                    <a href="/hangman">
-                        <img src="/images/hangman-game-icon.png" alt="Hangman Game">
-                        <p>Hangman Game</p>
-                    </a>
-                </div>
-                <div class="game-icon">
-                    <a href="/quiz">
-                        <img src="/images/quiz-icon.png" alt="Quiz">
-                        <p>Quiz</p>
-                    </a>
-                </div>
-                <div class="game-icon">
-                    <a href="/scenario">
-                        <img src="/images/scenario-based-quiz-icon.png" alt="Scenario Based Quiz">
-                        <p>Scenario Based Quiz</p>
-                    </a>
-                </div>
-                <div class="game-icon">
-                    <a href="/spinwheel">
-                        <img src="/images/spin-wheel-icon.png" alt="Spin Wheel">
-                        <p>Spin Wheel</p>
-                    </a>
-                </div>
-            </div>
+      <div class="games">
+        <div class="game-icon">
+          <a href="/snake-ladder">
+            <img src="/images/board-game-icon.png" alt="snake ladder" />
+            <p>Snake Ladder</p>
+          </a>
+        </div>
+        <div class="game-icon">
+          <a href="/hangman">
+            <img src="/images/hangman-game-icon.png" alt="Hangman Game" />
+            <p>Hangman Game</p>
+          </a>
+        </div>
+        <div class="game-icon">
+          <a href="/quiz">
+            <img src="/images/quiz-icon.png" alt="Quiz" />
+            <p>Quiz</p>
+          </a>
+        </div>
+        <div class="game-icon">
+          <a href="/scenario">
+            <img
+              src="/images/scenario-based-quiz-icon.png"
+              alt="Scenario Based Quiz"
+            />
+            <p>Scenario Based Quiz</p>
+          </a>
+        </div>
+        <div class="game-icon">
+          <a href="/spinwheel">
+            <img src="/images/spin-wheel-icon.png" alt="Spin Wheel" />
+            <p>Spin Wheel</p>
+          </a>
+        </div>
+      </div>
 
-            <a href="/auth/signout" class="signout-button">Sign Out</a>
-        <% } else { %>
-            <p>User data not available.</p>
-        <% } %>
+      <a href="/auth/signout" class="signout-button">Sign Out</a>
+      <% } else { %>
+      <p>User data not available.</p>
+      <% } %>
     </div>
     <div id="toast-container"></div>
     <script src="/app.js"></script>
-</body>
+  </body>
 </html>
