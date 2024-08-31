@@ -305,6 +305,25 @@
       result.textContent = `You got ${score} out of ${shuffledQuestions.length} correct.`;
       result.style.display = "block";
       document.getElementById("next-button").style.display = "none";
+
+      sendScoreToServer(score);
+    }
+
+    function sendScoreToServer(score) {
+      fetch("/update-score", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ score: score }),
+      })
+        .then((response) => response.json())
+        .then((data) => {
+          console.log("Score saved successfully:", data);
+        })
+        .catch((error) => {
+          console.error("Error saving score:", error);
+        });
     }
 
     document.addEventListener("DOMContentLoaded", () => {
