@@ -13,51 +13,45 @@
   background-color: #e6f2f5;
 }
 .nav {
-  height: 50px;
-  text-align: center;
-  font-family: "Brush Script MT", cursive;
-}
-.nav {
-  background-color: white;
-  display: flex;
-  padding: 10px;
-  border: none;
-  font-size: 15px;
-  padding-top: 20px;
-  width: 100%;
-  justify-content: center;
-  align-items: center;
-}
-.nav div {
-  margin: 20px;
-  height: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 4px 8px;
-  border-radius: 30%;
-  position: relative;
-  overflow: hidden;
-}
+        background-color: transparent;
+        display: flex;
+        padding: 10px;
+        border: none;
+        font-size: 15px;
+        padding-top: 20px;
+        width: 100%;
+        justify-content: center;
+      }
+      .nav div {
+        margin: 20px;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 4px 8px;
+        border-radius: 30%;
+        position: relative;
+        overflow: hidden;
+      }
 
-.nav div a {
-  text-decoration: none;
-  color: #298161;
-  font-size: 20px;
-}
-.nav div ::after {
-  content: "";
-  display: block;
-  height: 4px;
-  width: 100%;
-  background-color: #8fdcc2;
-  transform: scaleX(0);
-  transform-origin: left;
-  transition: transform 0.3s ease;
-}
-.nav div a:hover::after {
-  transform: scaleX(1);
-}
+      .nav div a {
+        text-decoration: none;
+        color: #333;
+        font-size: 20px;
+      }
+      .nav div ::after {
+        content: "";
+        display: block;
+        height: 4px;
+        width: 100%;
+        background-color: brown;
+        transform: scaleX(0);
+        transform-origin: left;
+        transition: transform 0.3s ease;
+      }
+      .nav div a:hover::after {
+        transform: scaleX(1);
+      }
 .container {
   max-width: 1200px;
   margin: 0 auto;
@@ -286,11 +280,11 @@ h1 {
     </style>
   </head>
   <body>
-    <div class="nav">
-      <div><a href="index.html">HOME</a></div>
-      <div><a href="abt.html">LEARN</a></div>
-      <div><a href="contact.html">PLAY</a></div>
-      <div><a href="project.html">LOGIN/SIGNUP</a></div>
+     <div class="nav">
+      <div><a href="/">HOME</a></div>
+      <div><a href="#article">LEARN</a></div>
+      <div><a href="home">DASHBOARD</a></div>
+      <div><a href="/auth/signin">LOGIN/SIGNUP</a></div>
     </div>
     <nav class="navigation-menu" id="navigationMenu">
       <ul>
