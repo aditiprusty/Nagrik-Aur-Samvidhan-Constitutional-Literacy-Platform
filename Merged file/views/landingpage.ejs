@@ -4,17 +4,23 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Nagarik Aur Sambidhan</title>
-    <div id="google_translate_element"></div>
-
-    <!-- Load the Google Translate script -->
-    <script type="text/javascript">
+    <div id="google_translate_element">
+      <!-- Load the Google Translate script -->
+      <script type="text/javascript">
         function loadGoogleTranslate() {
-            new google.translate.TranslateElement({
-                pageLanguage: 'en'
-            }, 'google_translate_element');
+          new google.translate.TranslateElement(
+            {
+              pageLanguage: "en",
+            },
+            "google_translate_element"
+          );
         }
-    </script>
-    <script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=loadGoogleTranslate"></script>
+      </script>
+      <script
+        type="text/javascript"
+        src="https://translate.google.com/translate_a/element.js?cb=loadGoogleTranslate"
+      ></script>
+    </div>
     <style>
       .nav {
         background-color: transparent;
@@ -25,6 +31,8 @@
         padding-top: 20px;
         width: 100%;
         justify-content: center;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+        margin-bottom: 10px;
       }
       .nav div {
         margin: 20px;
@@ -401,6 +409,68 @@
         color: #004085;
         box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
       }
+
+      .search-container {
+        max-width: 70%;
+        margin: 50px auto;
+        background: #fff;
+        border-radius: 1.625rem;
+        position: relative;
+        box-shadow: 0px 1px 5px 3px rgba(0, 0, 0, 0.12);
+      }
+
+      #searchBar {
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        margin-left: 220px;
+        padding: 20px;
+        box-shadow: 0px 1px 5px 3px rgba(0, 0, 0, 0.12);
+      }
+
+      #search-input {
+        width: 100%;
+        height: 2.8rem;
+        background: #eff1f1ef;
+        outline: none;
+        border: none;
+        border-radius: 1.625rem;
+        padding: 0 3.5rem 0 1.5rem;
+        font-size: 1rem;
+      }
+
+      #google_translate_element {
+        position: absolute;
+        right: 15px;
+        top: 10px;
+        z-index: 1;
+        background-color: rgba(255, 255, 255, 0.1);
+        border-radius: 8px;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        margin-top: 15px;
+        margin-left: 15px;
+        margin-right: 15px;
+      }
+
+      #google_translate_element select {
+        background-color: #fcdc94;
+        color: #4a4a4a;
+        border: 1px solid #78aba8;
+        border-radius: 4px;
+        padding: 5px;
+        font-family: "Montserrat", sans-serif;
+        font-size: 14px;
+        outline: none;
+      }
+
+      #google_translate_element select:hover {
+        border-color: #ef9c66;
+      }
+
+      #google_translate_element img {
+        display: none;
+      }
     </style>
   </head>
   <body>
@@ -409,6 +479,15 @@
       <div><a href="#article">LEARN</a></div>
       <div><a href="home">DASHBOARD</a></div>
       <div><a href="/auth/signin">LOGIN/SIGNUP</a></div>
+    </div>
+    <div class="search-container" id="searchbar">
+      <input
+        type="text"
+        name=""
+        placeholder="Search.."
+        id="search-input"
+        onkeyup="search()"
+      />
     </div>
     <div class="container">
       <div class="slider">
@@ -522,8 +601,10 @@
         <div class="articles">
           <div class="articles-range">ARTICLES 12 TO 13</div>
           <ul class="article-list">
-            <li>Article 12: Definition of "State"</li>
-            <li>Article 13: Laws inconsistent with Fundamental Rights</li>
+            <li class="product" id="id1">Article 12: Definition of "State"</li>
+            <li class="product" id="id2">
+              Article 13: Laws inconsistent with Fundamental Rights
+            </li>
           </ul>
           <a href="/article13" class="view-all">VIEW ALL</a>
         </div>
@@ -594,7 +675,7 @@
               institutions
             </li>
           </ul>
-          <a href="/article23-24" class="view-all">VIEW ALL</a>
+          <a href="/article25-28" class="view-all">VIEW ALL</a>
         </div>
       </div>
 
@@ -606,8 +687,10 @@
         <div class="articles">
           <div class="articles-range">ARTICLES 29 TO 30</div>
           <ul class="article-list">
-            <li>Article 29: Protection of interests of minorities</li>
-            <li>
+            <li class="product">
+              Article 29: Protection of interests of minorities
+            </li>
+            <li class="product">
               Article 30: Right of minorities to establish and administer
               educational institutions
             </li>
@@ -624,7 +707,7 @@
         <div class="articles">
           <div class="articles-range">ARTICLES 32 TO 35</div>
           <ul class="article-list">
-            <li>
+            <li class="product">
               Article 32: Right to approach the Supreme Court for enforcement of
               Fundamental Rights
             </li>
@@ -646,13 +729,21 @@
               Article 39: Equal rights to livelihood, resource distribution,
               child protection
             </li>
-            <li>Article 39A: Equal justice and legal aid</li>
-            <li>Article 41: Right to work, education, and public assistance</li>
-            <li>Article 42: Humane conditions of work and maternity relief</li>
-            <li>Article 43: Living wage for workers</li>
-            <li>Article 43A: Workers' participation in management</li>
-            <li>Article 45: Early childhood care and education</li>
-            <li>
+            <li class="product">Article 39A: Equal justice and legal aid</li>
+            <li class="product">
+              Article 41: Right to work, education, and public assistance
+            </li>
+            <li class="product">
+              Article 42: Humane conditions of work and maternity relief
+            </li>
+            <li class="product">Article 43: Living wage for workers</li>
+            <li class="product">
+              Article 43A: Workers' participation in management
+            </li>
+            <li class="product">
+              Article 45: Early childhood care and education
+            </li>
+            <li class="product">
               Article 46: Promotion of educational and economic interests of
               SCs, STs, and weaker sections
             </li>
@@ -669,11 +760,15 @@
         <div class="articles">
           <div class="articles-range">ARTICLES 36 TO 50</div>
           <ul class="article-list">
-            <li>Article 36: Definition of "State"</li>
-            <li>Article 37: Application of the principles</li>
-            <li>Article 40: Organization of village panchayats</li>
-            <li>Article 44: Uniform civil code</li>
-            <li>Article 50: Separation of judiciary from executive</li>
+            <li class="product">Article 36: Definition of "State"</li>
+            <li class="product">Article 37: Application of the principles</li>
+            <li class="product">
+              Article 40: Organization of village panchayats
+            </li>
+            <li class="product">Article 44: Uniform civil code</li>
+            <li class="product">
+              Article 50: Separation of judiciary from executive
+            </li>
           </ul>
           <a href="/article36-50" class="view-all">VIEW ALL</a>
         </div>
@@ -687,13 +782,17 @@
         <div class="articles">
           <div class="articles-range">ARTICLES 47 TO 51</div>
           <ul class="article-list">
-            <li>Article 47: Improvement of public health and nutrition</li>
-            <li>
+            <li class="product">
+              Article 47: Improvement of public health and nutrition
+            </li>
+            <li class="product">
               Article 48: Organization of agriculture and animal husbandry
             </li>
-            <li>Article 48A: Environmental protection</li>
-            <li>Article 49: Protection of monuments</li>
-            <li>Article 51: Promotion of international peace</li>
+            <li class="product">Article 48A: Environmental protection</li>
+            <li class="product">Article 49: Protection of monuments</li>
+            <li class="product">
+              Article 51: Promotion of international peace
+            </li>
           </ul>
           <a href="/article47-51" class="view-all">VIEW ALL</a>
         </div>
@@ -707,7 +806,7 @@
         <div class="articles">
           <div class="articles-range">ARTICLE 51A</div>
           <ul class="article-list">
-            <li>
+            <li class="product">
               Article 51A: Duties of citizens, including respecting the
               Constitution, promoting harmony, protecting the environment, and
               providing education
@@ -723,6 +822,29 @@
       const nextButton = document.querySelector(".next");
       const prevButton = document.querySelector(".prev");
       let currentSlide = 0;
+
+      const search = () => {
+        const searchbox = document
+          .getElementById("search-input")
+          .value.toUpperCase();
+        const storeitems = document.getElementById("container");
+        const product = document.querySelectorAll(".product");
+        const pname = storeitems.getElementsByTagName("a");
+
+        for (var i = 0; i < pname.length; i++) {
+          let match = product[i].getElementsByTagName("a")[0];
+
+          if (match) {
+            let textvalue = match.textContent || match.innerHTML;
+
+            if (textvalue.toUpperCase().indexOf(searchbox) > -1) {
+              product[i].style.display = "";
+            } else {
+              product[i].style.display = "none";
+            }
+          }
+        }
+      };
 
       function showSlide(index) {
         // Hide all slides

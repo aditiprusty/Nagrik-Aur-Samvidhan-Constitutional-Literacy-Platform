@@ -7,15 +7,21 @@
   </head>
   <div id="google_translate_element"></div>
 
-    <!-- Load the Google Translate script -->
-    <script type="text/javascript">
-        function loadGoogleTranslate() {
-            new google.translate.TranslateElement({
-                pageLanguage: 'en'
-            }, 'google_translate_element');
-        }
-    </script>
-    <script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=loadGoogleTranslate"></script>
+  <!-- Load the Google Translate script -->
+  <script type="text/javascript">
+    function loadGoogleTranslate() {
+      new google.translate.TranslateElement(
+        {
+          pageLanguage: "en",
+        },
+        "google_translate_element"
+      );
+    }
+  </script>
+  <script
+    type="text/javascript"
+    src="https://translate.google.com/translate_a/element.js?cb=loadGoogleTranslate"
+  ></script>
   <style>
     @import url("https://fonts.googleapis.com/css2?family=Merriweather:wght@300;400;700&display=swap");
 
@@ -35,7 +41,7 @@
 
     .container {
       max-width: 800px;
-      background-color: rgba(148, 180, 194, 0.96);
+      background-color: rgba(148, 180, 194, 0.99);
       padding: 20px;
       border-radius: 15px;
       box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
@@ -131,6 +137,32 @@
       color: #a5b554;
       display: none;
       animation: fadeIn 1s ease;
+    }
+
+    #google_translate_element {
+      position: fixed;
+      top: 10px;
+      right: 10px;
+      z-index: 1000;
+      background-color: rgba(148, 180, 194, 0.96);
+      padding: 5px;
+      border-radius: 5px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    #google_translate_element select {
+      padding: 5px;
+      border: none;
+      border-radius: 5px;
+      background-color: #156b93;
+      color: #fff;
+      font-size: 14px;
+      font-family: "Merriweather", serif;
+      cursor: pointer;
+    }
+
+    #google_translate_element select option {
+      color: #333;
     }
 
     @keyframes fadeIn {

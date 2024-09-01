@@ -4,17 +4,23 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Home</title>
-    <div id="google_translate_element"></div>
-
-    <!-- Load the Google Translate script -->
-    <script type="text/javascript">
+    <div id="google_translate_element">
+      <!-- Load the Google Translate script -->
+      <script type="text/javascript">
         function loadGoogleTranslate() {
-            new google.translate.TranslateElement({
-                pageLanguage: 'en'
-            }, 'google_translate_element');
+          new google.translate.TranslateElement(
+            {
+              pageLanguage: "en",
+            },
+            "google_translate_element"
+          );
         }
-    </script>
-    <script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=loadGoogleTranslate"></script>
+      </script>
+      <script
+        type="text/javascript"
+        src="https://translate.google.com/translate_a/element.js?cb=loadGoogleTranslate"
+      ></script>
+    </div>
     <style>
       @keyframes fadeIn {
         from {
@@ -169,9 +175,12 @@
         padding-top: 20px;
         width: 100%;
         justify-content: center;
+        position: relative;
+        z-index: 2;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
       }
       .nav div {
-        margin: 20px;
+        margin-top: 20px;
         height: 100%;
         display: flex;
         align-items: center;
@@ -200,10 +209,41 @@
       .nav div a:hover::after {
         transform: scaleX(1);
       }
+      #google_translate_element {
+        position: absolute;
+        right: 15px;
+        top: 10px;
+        z-index: 1;
+        background-color: rgba(255, 255, 255, 0.1);
+        border-radius: 8px;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        margin-top: 15px;
+        margin-left: 15px;
+        margin-right: 15px;
+      }
+
+      #google_translate_element select {
+        background-color: #fcdc94;
+        color: #4a4a4a;
+        border: 1px solid #78aba8;
+        border-radius: 4px;
+        padding: 5px;
+        font-family: "Montserrat", sans-serif;
+        font-size: 14px;
+        outline: none;
+      }
+
+      #google_translate_element select:hover {
+        border-color: #ef9c66;
+      }
+
+      #google_translate_element img {
+        display: none;
+      }
     </style>
   </head>
   <body>
-     <div class="nav">
+    <div class="nav">
       <div><a href="/">HOME</a></div>
       <div><a href="#article">LEARN</a></div>
       <div><a href="home">DASHBOARD</a></div>
@@ -211,7 +251,7 @@
     </div>
     <div class="container">
       <% if (user) { %>
-      <h1 style="color: #7ca0b8; margin: 35px">
+      <h1 style="color: #e96711; margin: 35px">
         <span style="color: #023f7f; margin-bottom: 35px">Hello!</span> <%=
         user.fullName %>
       </h1>
@@ -275,7 +315,7 @@
             <p>Scenario Based Quiz</p>
           </a>
         </div>
-        <div class="game-icon">
+        <!-- <div class="game-icon">
           <a href="/spinwheel">
             <img
               src="https://firebasestorage.googleapis.com/v0/b/chatapp-dae72.appspot.com/o/techcoders%2Fpngegg%20(5).pngf9a34058-2587-452f-8a55-e7878eaedfe0?alt=media&token=29720eb9-dcfe-4806-a2c0-be4abaf3a9cd"
@@ -283,7 +323,7 @@
             />
             <p>Spin Wheel</p>
           </a>
-        </div>
+        </div> -->
       </div>
       <a href="/auth/signout" class="signout-button">Sign Out</a>
       <% } else { %>
