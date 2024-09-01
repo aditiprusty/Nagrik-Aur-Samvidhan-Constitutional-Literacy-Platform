@@ -12,51 +12,45 @@
   background-color: #e6f2f5;
 }
 .nav {
-  height: 50px;
-  text-align: center;
-  font-family: "Brush Script MT", cursive;
-}
-.nav {
-  background-color: white;
-  display: flex;
-  padding: 10px;
-  border: none;
-  font-size: 15px;
-  padding-top: 20px;
-  width: 100%;
-  justify-content: center;
-  align-items: center;
-}
-.nav div {
-  margin: 20px;
-  height: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 4px 8px;
-  border-radius: 30%;
-  position: relative;
-  overflow: hidden;
-}
+        background-color: transparent;
+        display: flex;
+        padding: 10px;
+        border: none;
+        font-size: 15px;
+        padding-top: 20px;
+        width: 100%;
+        justify-content: center;
+      }
+      .nav div {
+        margin: 20px;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 4px 8px;
+        border-radius: 30%;
+        position: relative;
+        overflow: hidden;
+      }
 
-.nav div a {
-  text-decoration: none;
-  color: #298161;
-  font-size: 20px;
-}
-.nav div ::after {
-  content: "";
-  display: block;
-  height: 4px;
-  width: 100%;
-  background-color: #8fdcc2;
-  transform: scaleX(0);
-  transform-origin: left;
-  transition: transform 0.3s ease;
-}
-.nav div a:hover::after {
-  transform: scaleX(1);
-}
+      .nav div a {
+        text-decoration: none;
+        color: #333;
+        font-size: 20px;
+      }
+      .nav div ::after {
+        content: "";
+        display: block;
+        height: 4px;
+        width: 100%;
+        background-color: brown;
+        transform: scaleX(0);
+        transform-origin: left;
+        transition: transform 0.3s ease;
+      }
+      .nav div a:hover::after {
+        transform: scaleX(1);
+      }
 .container {
   max-width: 1200px;
   margin: 0 auto;
@@ -293,11 +287,11 @@ h1 {
     </style>
   </head>
   <body>
-    <div class="nav">
-      <div><a href="index.html">HOME</a></div>
-      <div><a href="abt.html">LEARN</a></div>
-      <div><a href="contact.html">PLAY</a></div>
-      <div><a href="project.html">LOGIN/SIGNUP</a></div>
+     <div class="nav">
+      <div><a href="/">HOME</a></div>
+      <div><a href="#article">LEARN</a></div>
+      <div><a href="home">DASHBOARD</a></div>
+      <div><a href="/auth/signin">LOGIN/SIGNUP</a></div>
     </div>
     <nav class="navigation-menu" id="navigationMenu">
       <ul>
@@ -328,7 +322,7 @@ h1 {
         </div>
         <div class="text-content">
           <h2>PART 3</h2>
-          <h1>Right to Freedom(19-22)</h1>
+          <h1>Right of Constitutional Remedies(32-35)</h1>
           <p>
             Part III of the Constitution deal with Fundamental Rights. These
             are: Right to equality, including equality before law, prohibition
@@ -341,130 +335,146 @@ h1 {
     <div class="seccontainer">
       <div class="container">
         <h1>
-          Article 19: Protection of certain rights regarding freedom of speech,
-          etc.
+          Article 32: Remedies for enforcement of rights conferred by this Part
         </h1>
         <p>
-          *Every citizen has the right to freely express their thoughts and
-          opinions through speech, writing, printing, or any other mode. This
-          freedom is crucial for the functioning of a democracy, where citizens
-          can freely discuss and criticize government policies and actions.
+          * The right to move the Supreme Court by appropriate proceedings for
+          the enforcement of the rights conferred by this Part is guaranteed.
         </p>
         <p>
-          *Citizens have the right to hold peaceful meetings and gatherings
-          without carrying weapons. This allows people to come together for
-          protests, rallies, and discussions, provided they do not disturb
-          public order.
+          * The Supreme Court shall have power to issue directions or orders or
+          writs, including writs in the nature of habeas corpus, mandamus,
+          prohibition, quo warranto and certiorari, whichever may be
+          appropriate, for the enforcement of any of the rights conferred by
+          this Part.
         </p>
         <p>
-          * This gives citizens the right to form groups, associations, unions,
-          or societies. It includes trade unions, political parties, clubs, and
-          other types of associations to promote their interests and activities.
+          * t acts as a safeguard for fundamental rights by allowing individuals
+          to seek direct judicial intervention from the highest court in the
+          country.
         </p>
         <p>
-          *In Simple Words: Article 19 grants Indian citizens the freedom to
-          speak freely, assemble peacefully, form associations, move throughout
-          the country, reside anywhere, and choose any profession. However,
-          these freedoms come with certain reasonable restrictions to ensure
-          they do not harm public safety, order, morality, or the integrity of
-          the nation. These freedoms are essential for personal liberty and a
-          healthy democracy.
-        </p>
-      </div>
-    </div>
-    <div class="ar20">
-      <div class="container">
-        <h1>Article 20: Protection in respect of conviction for offences</h1>
-        <p>
-          *Article 20 provides important protections to ensure that people are
-          treated fairly and justly by the legal system. It prevents the abuse
-          of legal procedures and safeguards the rights of individuals.
-        </p>
-        <p>
-          By prohibiting ex-post facto laws, double jeopardy, and
-          self-incrimination, Article 20 prevents the state from misusing its
-          power to unfairly convict or punish individuals.
-        </p>
-        <p>
-          Article 20 safeguards the freedom and rights of individuals,
-          especially those accused of crimes, by ensuring that legal proceedings
-          are conducted in a fair and just manner.
-        </p>
-        <p>
-          * In Simple Words Article 20 provides essential protections to
-          individuals accused of crimes, ensuring they are not unfairly treated
-          by the legal system. It prevents the government from punishing someone
-          for something that wasn’t a crime when they did it, stops them from
-          being tried twice for the same offense, and protects them from being
-          forced to confess. This helps maintain justice and fairness in legal
-          proceedings.
-        </p>
-      </div>
-    </div>
-    <div class="seccontainer">
-      <div class="container">
-        <h1>Article 21: Protection of life and personal liberty</h1>
-        <p>
-          *Article 21 of the Indian Constitution is one of the most important
-          and fundamental rights. It provides the Right to Life and Personal
-          Liberty to every person. This article ensures that no person shall be
-          deprived of their life or personal liberty except according to the
-          procedure established by law.
-        </p>
-        <p>
-          *The "Right to Life" under Article 21 is not just limited to mere
-          survival or existence. It includes living a life with dignity, free
-          from any inhuman or degrading treatment.
-        </p>
-        <p>
-          * The "Right to Personal Liberty" means that every individual has the
-          freedom to make personal choices and move freely without any
-          unreasonable restrictions.
-        </p>
-        <p>
-          *In Simple Words: Article 21 guarantees the right to live a life with
-          dignity and personal freedom. It ensures that no one can be deprived
-          of their life or liberty except through a fair, just, and legal
-          process. This right has been interpreted to include many essential
-          aspects of a meaningful life, such as privacy, health, a clean
-          environment, and access to legal aid, making it a fundamental pillar
-          of individual freedom and justice in India.
+          * In Simple Words: Article 32 ensures that if someone fundamental
+          rights are violated, they can approach the Supreme Court to get
+          justice and enforce those rights.
         </p>
       </div>
     </div>
     <div class="ar20">
       <div class="container">
         <h1>
-          Article 22: Protection Against Arrest and Detention in Certain Cases
+          Article 32A: Constitutional validity of State laws not to be
+          considered in proceedings under article 32
         </h1>
         <p>
-          *Article 22 of the Indian Constitution provides protection against
-          arrest and detention in certain cases. It is a crucial safeguard for
-          the protection of individual freedom and personal liberty, ensuring
-          that no person is unlawfully detained or arrested
+          * Article 32A was added to the Indian Constitution by the 44th
+          Amendment Act of 1978. It relates to the power of the Supreme Court to
+          enforce fundamental rights and specifies certain conditions under
+          which it can review laws affecting such rights.
         </p>
         <p>
-          * Any person who is arrested must be informed, as soon as possible, of
-          the grounds for their arrest. This means they have a right to know why
-          they are being detained.
+          * Article 32A allows the Supreme Court to examine whether any law
+          passed by Parliament or a state legislature is in conflict with
+          fundamental rights
         </p>
         <p>
-          * The rights mentioned above (like being informed of the grounds of
-          arrest and being produced before a magistrate) do not apply to cases
-          of preventive detention.
+          * This article also ensures that the Supreme Court’s power to review
+          laws is not affected by any limitations imposed by earlier laws or
+          amendments.
         </p>
         <p>
-          * In Simple Words Article 22 protects people from unlawful arrest and
-          detention. It ensures that anyone arrested has the right to know why
-          they are being arrested, to consult a lawyer, and to be brought before
-          a magistrate within 24 hours. It also provides safeguards against
-          preventive detention by limiting its duration and requiring oversight.
-          This article helps protect personal freedom and prevents the abuse of
-          power by law enforcement authorities.
+          * In summary, Article 32A strengthens the Supreme Court’s role in
+          safeguarding fundamental rights by allowing it to review and ensure
+          laws comply with constitutional protections.
         </p>
       </div>
     </div>
-
+    <div class="seccontainer">
+      <div class="container">
+        <h1>
+          Article 33: Power of Parliament to modify the rights conferred by this
+          Part in their application to Forces, etc.
+        </h1>
+        <p>
+          * Article 33 of the Indian Constitution allows the Parliament to
+          modify or restrict fundamental rights for members of the armed forces,
+          police forces, and other similar organizations.
+        </p>
+        <p>
+          *Article 33 allows the Parliament to make laws that can limit or
+          modify fundamental rights for members of the armed forces, police, and
+          other similar groups. This is done to ensure discipline and efficiency
+          in these organizations.
+        </p>
+        <p>
+          * The article recognizes that these forces need specific rules and
+          regulations that may require restrictions on certain fundamental
+          rights to maintain discipline and effective functioning.
+        </p>
+        <p>
+          * In simple terms, Article 33 lets the government limit fundamental
+          rights for military and police personnel to ensure they can perform
+          their duties effectively and maintain discipline.
+        </p>
+      </div>
+    </div>
+    <div class="ar20">
+      <div class="container">
+        <h1>
+          Article 34: Restriction on rights conferred by this Part while martial
+          law is in force in any area
+        </h1>
+        <p>
+          * Article 34 of the Indian Constitution deals with the suspension of
+          fundamental rights during the period of martial law and the protection
+          of actions taken under such laws.
+        </p>
+        <p>
+          * Article 34 allows the suspension of certain fundamental rights
+          during a period of martial law (when the military takes over control
+          due to emergencies or unrest). This ensures that the armed forces can
+          operate effectively under such conditions.
+        </p>
+        <p>
+          * It provides protection to actions taken by authorities under martial
+          law. This means that the actions of the military or authorities during
+          this period cannot be challenged in court on the grounds that they
+          violate fundamental rights.
+        </p>
+        <p>
+          * In simple terms, Article 34 allows for the suspension of certain
+          fundamental rights and shields actions taken under martial law from
+          being challenged in court.
+        </p>
+      </div>
+    </div>
+    <div class="seccontainer">
+      <div class="container">
+        <h1>
+          Article 35: Legislation to give effect to the provisions of this Part
+        </h1>
+        <p>
+          * Article 35 of the Indian Constitution deals with the power of
+          Parliament to make laws for enforcing fundamental rights and the
+          protection of such laws from being challenged in court.
+        </p>
+        <p>
+          * Article 35 gives Parliament the authority to make laws to enforce
+          the fundamental rights guaranteed by the Constitution. This ensures
+          that these rights are effectively implemented and protected.
+        </p>
+        <p>
+          * Laws made under Article 35 cannot be challenged in court solely on
+          the grounds that they infringe on fundamental rights. This helps
+          protect the legislative measures taken to uphold these rights.
+        </p>
+        <p>
+          * In simple terms, Article 35 allows Parliament to make and protect
+          laws necessary for implementing fundamental rights, ensuring that
+          these laws cannot be easily challenged in court.
+        </p>
+      </div>
+    </div>
     <script>
       const viewAllPartsBtn = document.getElementById("viewAllPartsBtn");
       const navigationMenu = document.getElementById("navigationMenu");

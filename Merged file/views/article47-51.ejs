@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>NAGRIK AUR SAMVIDHAN</title>
+    <style>
+        body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #e6f2f5;
+}
+.nav {
+        background-color: transparent;
+        display: flex;
+        padding: 10px;
+        border: none;
+        font-size: 15px;
+        padding-top: 20px;
+        width: 100%;
+        justify-content: center;
+      }
+      .nav div {
+        margin: 20px;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 4px 8px;
+        border-radius: 30%;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .nav div a {
+        text-decoration: none;
+        color: #333;
+        font-size: 20px;
+      }
+      .nav div ::after {
+        content: "";
+        display: block;
+        height: 4px;
+        width: 100%;
+        background-color: brown;
+        transform: scaleX(0);
+        transform-origin: left;
+        transition: transform 0.3s ease;
+      }
+      .nav div a:hover::after {
+        transform: scaleX(1);
+      }
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+  position: relative;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+border-radius: 8px;
+margin-bottom: 30px;
+}
+.view-all-parts {
+  background-color: #404978;
+  color: white;
+  padding: 10px 20px;
+  font-size: 14px;
+  font-weight: bold;
+  border: none;
+  cursor: pointer;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 10;
+}
+.view-all-parts::before {
+  content: "≡";
+  margin-right: 10px;
+}
+.content {
+  display: flex;
+  align-items: flex-start;
+  margin-top: 60px;
+}
+.part-number {
+  font-size: 120px;
+  font-weight: bold;
+  color: #404978;
+  line-height: 0.8;
+  margin-right: 20px;
+  position: relative;
+  height: 250px;
+}
+.part-number img {
+  height: 100%;
+}
+.part-number::before {
+  content: "PART";
+  font-size: 16px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  transform: rotate(-90deg) translate(-100%, -100%);
+  transform-origin: top left;
+}
+.part-number .pink-part {
+  color: #f8d0d8;
+}
+.icon {
+  width: 30px;
+  height: 30px;
+  background-color: #f8d0d8;
+  border-radius: 50%;
+  position: absolute;
+}
+.icon-top {
+  top: -20px;
+  right: -20px;
+}
+.icon-bottom {
+  bottom: -10px;
+  left: -10px;
+}
+.text-content {
+  flex-grow: 1;
+}
+h2 {
+  color: #404978;
+  font-size: 16px;
+  margin: 0 0 10px;
+}
+h1 {
+  color: #404978;
+  font-size: 48px;
+  margin: 0 0 20px;
+  font-weight: normal;
+}
+p {
+  color: #404978;
+  font-size: 18px;
+  line-height: 1.5;
+  margin: 0 0 20px;
+}
+.read-more {
+  color: #404978;
+  text-decoration: none;
+  font-weight: bold;
+}
+.read-more::after {
+  content: "↓";
+  margin-left: 5px;
+}
+.navigation-menu {
+  position: fixed;
+  top: 0;
+  left: -300px;
+  width: 300px;
+  height: 100%;
+  background-color: #404978;
+  transition: left 0.3s ease-in-out;
+  z-index: 1000;
+  overflow-y: auto;
+}
+.navigation-menu.active {
+  left: 0;
+}
+.navigation-menu ul {
+  list-style-type: none;
+  padding: 20px;
+  margin: 0;
+}
+.navigation-menu ul li {
+  margin-bottom: 10px;
+}
+.navigation-menu ul li a {
+  color: white;
+  text-decoration: none;
+  font-size: 16px;
+  display: block;
+  padding: 10px;
+  border-radius: 5px;
+  transition: background-color 0.2s;
+}
+.navigation-menu ul li a:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.duty-container {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-around;
+        margin-top: 30px;
+      }
+
+      .duty-card {
+        width: 200px;
+        height: 250px;
+        background-color: #fff;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        margin: 10px;
+        overflow: hidden;
+        transition: transform 0.3s ease;
+        cursor: pointer;
+      }
+
+      .duty-card:hover {
+        transform: scale(1.05);
+      }
+
+      .duty-image {
+        width: 100%;
+        height: 150px;
+        background-size: cover;
+        background-position: center;
+      }
+
+      .duty-text {
+        padding: 10px;
+        text-align: center;
+        font-size: 14px;
+        color: #404978;
+      }
+
+      .modal {
+        display: none;
+        position: fixed;
+        z-index: 1000;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        overflow: auto;
+        background-color: rgba(0,0,0,0.4);
+      }
+
+      .modal-content {
+        background-color: #fefefe;
+        margin: 15% auto;
+        padding: 20px;
+        border: 1px solid #888;
+        width: 80%;
+        max-width: 600px;
+        border-radius: 10px;
+      }
+
+      .close {
+        color: #aaa;
+        float: right;
+        font-size: 28px;
+        font-weight: bold;
+        cursor: pointer;
+      }
+
+      .close:hover,
+      .close:focus {
+        color: black;
+        text-decoration: none;
+        cursor: pointer;
+      }
+       .article-container {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-around;
+        margin-top: 30px;
+      }
+
+      .article-card {
+        width: 220px;
+        height: 280px;
+        background-color: #fff;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        margin: 10px;
+        overflow: hidden;
+        transition: transform 0.3s ease;
+        cursor: pointer;
+        position: relative;
+      }
+
+      .article-card:hover {
+        transform: scale(1.05);
+      }
+
+      .article-image {
+        width: 100%;
+        height: 160px;
+        background-size: cover;
+        background-position: center;
+      }
+
+      .article-text {
+        padding: 10px;
+        text-align: center;
+        font-size: 16px;
+        color: #404978;
+        font-weight: bold;
+      }
+
+      .article-number {
+        position: absolute;
+        top: 10px;
+        left: 10px;
+        background-color: #404978;
+        color: white;
+        padding: 5px 10px;
+        border-radius: 15px;
+        font-size: 14px;
+      }
+
+      #animationContainer {
+        width: 100%;
+        height: 300px;
+        background-color: #f0f0f0;
+        margin-top: 30px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 24px;
+        color: #404978;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="nav">
+      <div><a href="/">HOME</a></div>
+      <div><a href="#article">LEARN</a></div>
+      <div><a href="home">DASHBOARD</a></div>
+      <div><a href="/auth/signin">LOGIN/SIGNUP</a></div>
+    </div>
+    <nav class="navigation-menu" id="navigationMenu">
+      <ul>
+        <li><a href="#part1">Right to Equality (Articles 14-18)</a></li>
+        <li><a href="#part2">Right to Freedom (Articles 19-22)</a></li>
+        <li>
+          <a href="#part3">Right against Exploitation (Articles 23-24)</a>
+        </li>
+        <li>
+          <a href="#part4">Right to Freedom of Religion (Articles 25-28)</a>
+        </li>
+        <li>
+          <a href="#part5">Cultural and Educational Rights (Articles 29-30) </a>
+        </li>
+        <li>
+          <a href="#part6">Right to Constitutional Remedies (Article 32)</a>
+        </li>
+        <li><a href="#part7">Saving of Laws (Articles 33-35)</a></li>
+      </ul>
+    </nav>
+    <div class="container">
+      <button class="view-all-parts" id="viewAllPartsBtn">
+        VIEW ALL PARTS
+      </button>
+      <div class="content">
+        <div class="part-number">
+          <img src="./image/4.png" alt="" />
+        </div>
+        <div class="text-content">
+          <h2>PART IV</h2>
+          <h1>Environmental and Cultural Protection</h1>
+          <h2>Directive Principles of State Policy</h2>
+          <p>
+            Part IV of the Constitution contains the Directive Principles of State Policy, which act as fundamental principles to guide the functioning of the State in its goal of establishing an economic and social democracy.
+          </p>
+        </div>
+      </div>
+    </div>
+   <div class="container">
+      <h1>Articles 47 to 51: Environmental and Cultural Protection</h1>
+      <p>Let's explore these important articles through interactive cards:</p>
+      
+      <div class="article-container" id="articleContainer"></div>
+
+      <div id="animationContainer">
+        Click on an article card to see its explanation here!
+      </div>
+    </div>
+
+    <div id="articleModal" class="modal">
+      <div class="modal-content">
+        <span class="close">&times;</span>
+        <h2 id="modalTitle"></h2>
+        <p id="modalDescription"></p>
+      </div>
+    </div>
+    <script >
+     
+const viewAllPartsBtn = document.getElementById("viewAllPartsBtn");
+      const navigationMenu = document.getElementById("navigationMenu");
+      const articleContainer = document.getElementById('articleContainer');
+      const modal = document.getElementById('articleModal');
+      const modalTitle = document.getElementById('modalTitle');
+      const modalDescription = document.getElementById('modalDescription');
+      const closeBtn = document.getElementsByClassName('close')[0];
+      const animationContainer = document.getElementById('animationContainer');
+
+      viewAllPartsBtn.addEventListener("click", () => {
+        navigationMenu.classList.toggle("active");
+      });
+
+      document.addEventListener("click", (event) => {
+        if (
+          !navigationMenu.contains(event.target) &&
+          event.target !== viewAllPartsBtn
+        ) {
+          navigationMenu.classList.remove("active");
+        }
+      });
+
+ const articles = [
+        {
+          number: 47,
+          title: "Improvement of public health and nutrition",
+          description: "The State shall regard the raising of the level of nutrition and the standard of living and to improve public health as among its primary duties.",
+          image: "/api/placeholder/220/160"
+        },
+        {
+          number: 48,
+          title: "Organization of agriculture and animal husbandry",
+          description: "The State shall take steps to prohibit the slaughter of cows, calves and other milch and draught cattle.",
+          image: "/api/placeholder/220/160"
+        },
+        {
+          number: "48A",
+          title: "Environmental protection",
+          description: "The State shall endeavour to protect and improve the environment and to safeguard the forests and wildlife of the country.",
+          image: "/api/placeholder/220/160"
+        },
+        {
+          number: 49,
+          title: "Protection of monuments",
+          description: "It shall be the obligation of the State to protect every monument or place or object of artistic or historic interest, declared by or under law made by Parliament to be of national importance, from spoliation, disfigurement, destruction, removal, disposal or export, as the case may be.",
+          image: "/api/placeholder/220/160"
+        },
+        {
+          number: 51,
+          title: "Promotion of international peace",
+          description: "The State shall endeavour to promote international peace and security, maintain just and honourable relations between nations, foster respect for international law and treaty obligations, and encourage settlement of international disputes by arbitration.",
+          image: "/api/placeholder/220/160"
+        }
+      ];
+
+articles.forEach((article) => {
+        const card = document.createElement('div');
+        card.className = 'article-card';
+        card.innerHTML = `
+          <div class="article-number">Article ${article.number}</div>
+          <div class="article-image" style="background-image: url(${article.image})"></div>
+          <div class="article-text">${article.title}</div>
+        `;
+        card.addEventListener('click', () => showArticleExplanation(article));
+        articleContainer.appendChild(card);
+      });
+
+      function showArticleExplanation(article) {
+        modalTitle.textContent = `Article ${article.number}: ${article.title}`;
+        modalDescription.textContent = article.description;
+        modal.style.display = 'block';
+        
+        // Simple animation for explanation
+        animationContainer.innerHTML = `
+          <div style="text-align: center;">
+            <h3>Article ${article.number}</h3>
+            <p>${article.description}</p>
+          </div>
+        `;
+        animationContainer.style.opacity = 0;
+        setTimeout(() => {
+          animationContainer.style.transition = 'opacity 1s';
+          animationContainer.style.opacity = 1;
+        }, 100);
+      }
+
+      closeBtn.onclick = function() {
+        modal.style.display = 'none';
+      }
+
+      window.onclick = function(event) {
+        if (event.target == modal) {
+          modal.style.display = 'none';
+        }
+      }
+    </script>
+  </body>
+</html>

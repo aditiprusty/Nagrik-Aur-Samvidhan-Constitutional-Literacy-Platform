@@ -107,6 +107,45 @@ app.get("/auth/signin", (req, res) => {
 app.get("/auth/signup", (req, res) => {
   res.render("signup");
 });
+app.get("/article13",(req,res)=>{
+  res.render("article13.ejs");
+});
+app.get("/article14-18",(req,res)=>{
+  res.render("article14-18.ejs");
+});
+app.get("/article19-22",(req,res)=>{
+  res.render("article19-22.ejs");
+});
+app.get("/article23-24",(req,res)=>{
+  res.render("article23-24.ejs");
+});
+app.get("/article25-28",(req,res)=>{
+  res.render("article25-28.ejs");
+});
+app.get("/article29-30",(req,res)=>{
+  res.render("article29-30.ejs");
+});
+app.get("/article31",(req,res)=>{
+  res.render("article31.ejs");
+});
+app.get("/article31A-31D",(req,res)=>{
+  res.render("article31A-31D.ejs");
+});
+app.get("/article32-35",(req,res)=>{
+  res.render("article32-35.ejs");
+});
+app.get("/article36-50",(req,res)=>{
+  res.render("article36-50.ejs");
+});
+app.get("/article38-46",(req,res)=>{
+  res.render("article38-46.ejs");
+});
+app.get("/article47-51",(req,res)=>{
+  res.render("article47-51.ejs");
+});
+app.get("/artclei51A",(req,res)=>{
+  res.render("article51A.ejs");
+});
 
 app.post("/update-score", async (req, res) => {
   if (!req.session.user) {
