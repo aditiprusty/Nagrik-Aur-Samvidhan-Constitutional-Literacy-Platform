@@ -31,7 +31,7 @@ app.use("/auth", authRoutes);
 
 // Home Route
 app.get("/", (req, res) => {
-  res.render("landingpage.ejs");
+  res.render("index.ejs");
 });
 
 app.get("/home", async (req, res) => {

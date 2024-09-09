@@ -3,6 +3,9 @@
   "version": "1.0.0",
   "description": "A basic authentication system with MongoDB, Express, and Node.js",
   "main": "app.js",
+  "engines": {
+    "node": "18.x"
+  },
   "scripts": {
     "start": "node app.js",
     "dev": "nodemon app.js"
