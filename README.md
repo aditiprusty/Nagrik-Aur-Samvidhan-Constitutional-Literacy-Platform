@@ -31,8 +31,8 @@ Welcome to the **Nagrik Aur Samvidhan** project! This initiative aims to enhance
 
 1. **Clone the Repository**
    ```bash
-   git clone https://github.com/yourusername/nagrik-aur-samvidhan.git
-   cd nagrik-aur-samvidhan
+   git clone https://github.com/ITER-SIH/HW5-Team82.git
+   cd HW5-Team82
    ```
 
 2. **Install Dependencies**
@@ -47,6 +47,23 @@ Welcome to the **Nagrik Aur Samvidhan** project! This initiative aims to enhance
 
 4. **Access the Platform**
    Open your web browser and navigate to `http://localhost:3000` to view the platform.
+
+## Prototype Images
+
+   **Landing Page**: 
+   ![Landing Page](ReadMe_Images/LandingPage.jpeg)
+   
+   | Dashboard | Article Info |
+   |---|---|
+   | <img src="ReadMe_Images/Dashboard.jpeg" alt="Dashboard" width="450"> | <img src="ReadMe_Images/ArticleInfo.jpeg" alt="Article Info" width="450"> |
+
+   | Quiz Game | HangMan-Guess Game |
+   |---|---|
+   | <img src="ReadMe_Images/Quiz.jpeg" alt="Quiz" width="450"> | <img src="ReadMe_Images/GuessGame.jpeg" alt="Hangman-Guessing Game" width="450"> |
+
+   | Snakes and Ladders | Scenario Based Game |
+   |---|---|
+   | <img src="ReadMe_Images/SnakesAndLadders.jpeg" alt="Snakes and Ladders" width="450"> | <img src="ReadMe_Images/CaseStudy.jpeg" alt="Scenario Based Game" width="450"> |   
 
 ## Development and Contribution
 

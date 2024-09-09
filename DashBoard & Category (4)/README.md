@@ -1,1 +1,0 @@
-# Nagrik-Aur-Samvidhan-Constitutional-Literacy-Platform
