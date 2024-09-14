@@ -61,7 +61,7 @@ Welcome to the **Nagrik Aur Samvidhan** project! This initiative aims to enhance
    |---|---|
    | <img src="ReadMe_Images/Quiz.jpeg" alt="Quiz" width="450"> | <img src="ReadMe_Images/GuessGame.jpeg" alt="Hangman-Guessing Game" width="450"> |
 
-   | Snakes and Ladders | Scenario Based Game |
+   | Snakes and Ladders | Scenario Based Game | 
    |---|---|
    | <img src="ReadMe_Images/SnakesAndLadders.jpeg" alt="Snakes and Ladders" width="450"> | <img src="ReadMe_Images/CaseStudy.jpeg" alt="Scenario Based Game" width="450"> |   
 
